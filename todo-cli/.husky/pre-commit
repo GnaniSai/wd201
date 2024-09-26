@@ -1,2 +1,5 @@
-npm test
+#!/usr/bin/env sh
+. "$(dirname "$0")/h"
+
+cd todo-cli && npm test
 npx lint-staged

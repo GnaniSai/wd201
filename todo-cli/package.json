@@ -6,12 +6,12 @@
     "test": "jest",
     "prepare": "cd .. && husky install todo-cli/.husky"
  },
- "lint-staged": {
-  "*.js": [
-    "eslint",
-    "prettier --write ."
-  ]
-},
+    "lint-staged": {
+      "*.js": [
+        "eslint",
+        "prettier --write ."
+      ]
+    },
   "author": "Gnani Sai <gnaneswarsai117@gmail.com>",
   "license": "ISC",
   "description": "",
