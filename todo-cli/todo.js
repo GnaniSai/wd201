@@ -1,71 +1,40 @@
 const todoList = () => {
   all = []
   const add = (todoItem) => {
-    all.push(todoItem)
+      all.push(todoItem)
   }
   const markAsComplete = (index) => {
-    all[index].completed = true
+      all[index].completed = true
   }
 
   const overdue = () => {
-    let a = [];
-    for (i = 0; i < all.length; i++) {
-      if (all[i].dueDate === yesterday) {
-        a.push(all[i])
-      }
-    }
-    return a
+      return all.filter((value) => value['dueDate'] === yesterday)  
   }
 
   const dueToday = () => {
-    let b = [];
-    for (i = 0; i < all.length; i++) {
-      if (all[i].dueDate === today) {
-        b.push(all[i])
-      }
-    }
-    return b
+      return all.filter((value) => value['dueDate'] === today)  
   }
 
   const dueLater = () => {
-    let c = [];
-    for (i = 0; i < all.length; i++) {
-      if (all[i].dueDate === tomorrow) {
-        c.push(all[i])
-      }
-    }
-    return c
+      return all.filter((value) => value['dueDate'] === tomorrow)  
   }
 
   const toDisplayableList = (list) => {
-    let data = [];
-    for(j = 0; j < list.length; j++) {
-      const element = list[j]
-      
-      if (element.completed && element.dueDate == today) {
-        data.push(`[x] ${element.title}`)
-      }
-      else if (element.completed) {
-        data.push(`[x] ${element.title} ${element.dueDate}`)
-      }
-      else if(element.completed != true && element.dueDate ==today){
-        data.push(`[ ] ${element.title}`)
-      }
-      else {
-        data.push(`[ ] ${element.title} ${element.dueDate}`)
-      }
-    }
-    return data.join("\n")
+      return list.map(element => {
+          const status = element.completed ? '[x]' : '[ ]';
+          const dueDate = (element.dueDate === today) ? '' : ` ${element.dueDate}`;
+          return `${status} ${element.title}${dueDate}`.trim();
+      }).join("\n");
   }
 
   return {
-    all,
-    add,
-    markAsComplete,
-    overdue,
-    dueToday,
-    dueLater,
-    toDisplayableList
+      add,
+      markAsComplete,
+      overdue,
+      dueToday,
+      dueLater,
+      toDisplayableList,
+      all
   };
 };
 
