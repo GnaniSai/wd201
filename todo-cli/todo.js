@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 const todoList = () => {
-                all = [];
-                const add = (todoItem) => {
-                    all.push(todoItem);
-                };
-                const markAsComplete = (index) => {
-                    all[index].completed = true;
-                };
+  all = [];
+  const add = (todoItem) => {
+    all.push(todoItem);
+  };
+  const markAsComplete = (index) => {
+    all[index].completed = true;
+  };
 
   const overdue = () => {
     return all.filter(
