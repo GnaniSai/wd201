@@ -10,19 +10,19 @@ const todoList = () => {
 
   const overdue = () => {
     return all.filter(
-      (value) => value["dueDate"] < new Date().toISOString().slice(0, 10)
+      (value) => value["dueDate"] < new Date().toISOString().slice(0, 10),
     );
   };
 
   const dueToday = () => {
     return all.filter(
-      (value) => value["dueDate"] === new Date().toISOString().slice(0, 10)
+      (value) => value["dueDate"] === new Date().toISOString().slice(0, 10),
     );
   };
 
   const dueLater = () => {
     return all.filter(
-      (value) => value["dueDate"] > new Date().toISOString().slice(0, 10)
+      (value) => value["dueDate"] > new Date().toISOString().slice(0, 10),
     );
   };
 
