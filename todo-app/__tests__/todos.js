@@ -81,6 +81,9 @@ describe("Todo Application", function () {
     const todoID = parsedResponse.id;
     expect(parsedResponse.title).toBe("Buy Chocos");
     const deletedTodoResponse = await agent.delete(`/todos/${todoID}`);
+    expect(deletedTodoResponse.status).toBe(200);
     expect(deletedTodoResponse.body).toBe(true);
+    const todoNotExist = await agent.delete(`/todos/12`);
+    expect(todoNotExist.status).toBe(422);
   });
 });
