@@ -76,7 +76,7 @@ describe("Todo Application", function () {
     const parsedResponse = JSON.parse(createResponse.text);
     const todoID = parsedResponse.id;
     expect(todoID).toBe(3);
-    const deleteResponse = await agent.delete(`/todos/3`);
+    const deleteResponse = await agent.delete(`/todos/${todoID}`);
     expect(deleteResponse.statusCode).toBe(200);
     expect(deleteResponse.body).toStrictEqual({ success: true });
   });
