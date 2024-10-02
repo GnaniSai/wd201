@@ -73,9 +73,9 @@ describe("Todo Application", function () {
 
   test("Deletes a todo with the given ID if it exists and sends a boolean response", async () => {
     const response = await agent.post("/todos").send({
-      title: "Pay Rent",
+      title: "Buy milk",
       dueDate: new Date().toISOString(),
-      completed: false,
+      completed: true,
     });
     const parsedResponse = JSON.parse(response.text);
     const todoID = parsedResponse.id;
