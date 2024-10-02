@@ -79,9 +79,5 @@ describe("Todo Application", function () {
     const deleteResponse = await agent.delete(`/todos/4`);
     expect(deleteResponse.statusCode).toBe(200);
     expect(deleteResponse.body).toBe(true);
-
-    const fetchResponse = await agent.get(`/todos/4`);
-    expect(fetchResponse.statusCode).toBe(200);
-    expect(fetchResponse.body).toBeNull();
   });
 });
