@@ -54,11 +54,13 @@ app.delete("/todos/:id", async function (request, response) {
   console.log("We have to delete a Todo with ID: ", request.params.id);
   try {
     const todo = await Todo.findByPk(request.params.id);
-    await todo.destroy();
-    return response.json({ success: true });
+    const deletedTodo = await todo.destroy();
+    console.log(deletedTodo);
+
+    return response.send(deletedTodo ? true : false);
   } catch (error) {
     console.log(error);
-    return response.status(422).json(error);
+    return response.status(422).send(false);
   }
 });
 

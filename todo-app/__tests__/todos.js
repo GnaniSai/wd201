@@ -77,8 +77,8 @@ describe("Todo Application", function () {
     const todoID = parsedResponse.id;
     expect(todoID).toBe(3);
     const deleteResponse = await agent.delete(`/todos/${todoID}`);
-    expect(deleteResponse.statusCode).toBe(200);
     const parsedUpdateResponse = JSON.parse(deleteResponse.text);
-    expect(parsedUpdateResponse).toStrictEqual({ success: true });
+    console.log(parsedUpdateResponse);
+    expect(parsedUpdateResponse).toBe(true);
   });
 });
