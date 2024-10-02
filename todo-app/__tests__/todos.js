@@ -72,7 +72,9 @@ describe("Todo Application", function () {
   });
 
   test("Deletes a todo with the given ID if it exists and sends a boolean response", async () => {
-    const deletedTodo = await agent.delete(`/todos/1`).send();
+    const deletedTodo = await agent
+      .delete(`/todos/1`)
+      .send({ id: 1, title: "Test Todo", dueDate: "2024-10-03" });
     expect(deletedTodo.body).toBe(true);
   });
 });
