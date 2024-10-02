@@ -78,6 +78,7 @@ describe("Todo Application", function () {
     expect(todoID).toBe(3);
     const deleteResponse = await agent.delete(`/todos/${todoID}`);
     expect(deleteResponse.statusCode).toBe(200);
-    expect(deleteResponse.body).toStrictEqual({ success: true });
+    const parsedUpdateResponse = JSON.parse(deleteResponse.text);
+    expect(parsedUpdateResponse).toStrictEqual({ success: true });
   });
 });
