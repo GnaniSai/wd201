@@ -55,7 +55,11 @@ app.delete("/todos/:id", async function (request, response) {
   try {
     const todo = await Todo.findByPk(request.params.id);
     // eslint-disable-next-line no-unused-vars
-    const deletedTodo = await todo.deleteTodo();
+    const deletedTodo = await todo.destroy({
+      where: {
+        id: todo,
+      },
+    });
     return response.send(true);
   } catch (error) {
     console.log(error);
