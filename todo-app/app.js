@@ -10,7 +10,6 @@ app.get("/", function (request, response) {
 
 app.get("/todos", async function (_request, response) {
   console.log("Processing list of all Todos ...");
-  // FILL IN YOUR CODE HERE
   try {
     const todos = await Todo.findAll();
     response.send(todos);
