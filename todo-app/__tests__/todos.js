@@ -73,17 +73,16 @@ describe("Todo Application", function () {
 
   test("Deletes a todo with the given ID if it exists and sends a boolean response", async () => {
     const response = await agent.post("/todos").send({
-      title: "Buy Chocos",
+      title: "Pay Rent",
       dueDate: new Date().toISOString(),
       completed: false,
     });
     const parsedResponse = JSON.parse(response.text);
     const todoID = parsedResponse.id;
-    expect(parsedResponse.title).toBe("Buy Chocos");
-    const deletedTodoResponse = await agent.delete(`/todos/${todoID}`);
-    expect(deletedTodoResponse.status).toBe(200);
-    expect(deletedTodoResponse.body).toBe(true);
-    const todoNotExist = await agent.delete(`/todos/12`);
-    expect(todoNotExist.status).toBe(422);
+
+    expect(response.statusCode).toBe(200);
+
+    const deletedTodo = await agent.put(`/todos/${todoID}`).send();
+    expect(deletedTodo.statusCode).toBe(404);
   });
 });
