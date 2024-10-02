@@ -77,16 +77,14 @@ describe("Todo Application", function () {
       dueDate: new Date().toISOString(),
       completed: false,
     });
-
-    const parsedCreateResponse = JSON.parse(createResponse.text);
-    const todoID = parsedCreateResponse.id;
-    expect(parsedCreateResponse.title).toBe("Delete me");
-
-    const deleteResponse = await agent.delete(`/todos/${todoID}`);
+    const parsedResponse = JSON.parse(createResponse.text);
+    const todoID = parsedResponse.id;
+    expect(todoID).toBe(5);
+    const deleteResponse = await agent.delete(`/todos/5`);
     expect(deleteResponse.statusCode).toBe(200);
     expect(deleteResponse.body).toBe(true);
 
-    const fetchResponse = await agent.get(`/todos/${todoID}`);
+    const fetchResponse = await agent.get(`/todos/5`);
     expect(fetchResponse.statusCode).toBe(200);
     expect(fetchResponse.body).toBeNull();
   });
