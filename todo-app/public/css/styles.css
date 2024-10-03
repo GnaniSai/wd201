@@ -1,6 +1,38 @@
 body {
-  background-color: rgb(193, 47, 47);
+  background-color: black;
   color: white;
   font-weight: bold;
   font-family: sans-serif;
+}
+
+header{
+  background-color: rgb(193, 47, 47);
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+footer{
+  background-color: rgb(193, 47, 47);
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+table,tr,th,td{
+  border: 3px solid white;
+  border-collapse: collapse;
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+}
+
+.table-content{
+  display: flex;
+  margin: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+th{
+  color: chartreuse;
 }

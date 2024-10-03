@@ -7,14 +7,10 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <%-include('header.ejs') %>
-    <table>
-        <% for(let i = 0; i<allTodos.length; i++){%>
-            <tr>
-                <td><%= allTodos[i].title %></td>
-            </tr>
-        <% }%>
-        
-    </table>
+    <header><%-include('header.ejs') %></header>
+    <%-include('todos.ejs') %>
+    <footer>
+       <%-include('footer.ejs') %>
+    </footer>
 </body>
 </html>
