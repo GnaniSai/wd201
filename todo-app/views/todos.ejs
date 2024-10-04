@@ -7,7 +7,10 @@
 </div>
 <div class="flex gap-5 justify-evenly m-10">
     <div class="border-2 border-black w-96 h-96 rounded-lg">
-        <h5 class="text-center m-2 font-bold text-amber-600">Overdue <span id="count-overdue" class="bg-gray-600 text-white font-bold rounded-full px-2 py-0 text-center"><%= overDueList.length %></span></h5>
+        <div class="flex justify-center">
+        <h5 class="text-center m-2 font-bold text-amber-600">Overdue</h5>
+        <span id="count-overdue" class="relative top-2 text-red-500 font-bold text-center"><%= overDueList.length %></span>
+    </div>
         <ul class="p-2">
             <% for(let i = 0; i<overDueList.length; i++){%>
                 <li class="m-2 p-2 hover:bg-purple-200 font-bold cursor-pointer"><input type="checkbox" name="" class="cursor-pointer w-5" id="todo-over-<%=[i] %>"> <label for="todo-over-<%=[i] %>" class="cursor-pointer"><%= overDueList[i].title %></label></li>
@@ -15,7 +18,10 @@
         </ul>
     </div>
     <div class="border-2 border-black w-96 h-96 rounded-lg">
-        <h5 class="text-center m-2 font-bold text-amber-600">Due Today <span id="count-due-today" class="bg-gray-600 text-white font-bold rounded-full px-2 py-0 text-center"><%= dueTodayList.length %></span></h5>
+        <div class="flex justify-center">
+        <h5 class="text-center m-2 font-bold text-amber-600">Due Today</h5>
+        <span id="count-overdue" class="relative top-2 text-red-500 font-bold text-center"><%= dueTodayList.length %></span>
+    </div>
         <ul class="p-2">
             <% for(let i = 0; i<dueTodayList.length; i++){%>
                 <li class="m-2 p-2 hover:bg-purple-200 font-bold cursor-pointer"><input type="checkbox" name="" class="cursor-pointer w-5" id="todo-today-<%=[i] %>"> <label for="todo-today-<%=[i] %>" class="cursor-pointer"><%= dueTodayList[i].title %></label></li>
@@ -23,7 +29,10 @@
         </ul>
     </div>
     <div class="border-2 border-black w-96 h-96 rounded-lg">
-        <h5 class="text-center m-2 font-bold text-amber-600">Due Later <span id="count-due-later" class="bg-gray-600 text-white font-bold rounded-full px-2 py-0 text-center"><%= dueLaterList.length %></span></h5>
+        <div class="flex justify-center">
+        <h5 class="text-center m-2 font-bold text-amber-600">Due Later</h5>
+        <span id="count-overdue" class="relative top-2 text-red-500 font-bold text-center"><%= dueLaterList.length %></span>
+    </div>
         <ul class="p-2">
             <% for(let i = 0; i<dueLaterList.length; i++){%>
                     <li class="m-2 p-2 hover:bg-purple-200 font-bold cursor-pointer"><input type="checkbox" name="" class="cursor-pointer w-5" id="todo-later-<%=[i] %>"> <label for="todo-later-<%=[i] %>" class="cursor-pointer"><%= dueLaterList[i].title %></label></li>
