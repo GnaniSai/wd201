@@ -20,7 +20,7 @@
     <div class="border-2 border-black w-96 h-96 rounded-lg">
         <div class="flex justify-center">
         <h5 class="text-center m-2 font-bold text-amber-600">Due Today</h5>
-        <span id="count-overdue" class="relative top-2 text-red-500 font-bold text-center"><%= dueTodayList.length %></span>
+        <span id="count-due-today" class="relative top-2 text-red-500 font-bold text-center"><%= dueTodayList.length %></span>
     </div>
         <ul class="p-2">
             <% for(let i = 0; i<dueTodayList.length; i++){%>
@@ -31,7 +31,7 @@
     <div class="border-2 border-black w-96 h-96 rounded-lg">
         <div class="flex justify-center">
         <h5 class="text-center m-2 font-bold text-amber-600">Due Later</h5>
-        <span id="count-overdue" class="relative top-2 text-red-500 font-bold text-center"><%= dueLaterList.length %></span>
+        <span id="count-due-later" class="relative top-2 text-red-500 font-bold text-center"><%= dueLaterList.length %></span>
     </div>
         <ul class="p-2">
             <% for(let i = 0; i<dueLaterList.length; i++){%>
