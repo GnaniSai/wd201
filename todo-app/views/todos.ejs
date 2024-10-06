@@ -22,7 +22,7 @@
 
             <ul class="list-none">
                 <% for(let i = 0; i<overdue.length; i++){%>
-                <li class="Todo-item">
+                <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
                         <div class="flex items-center gap-2">
                             <input type="checkbox" <%= overdue[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= overdue[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
@@ -51,7 +51,7 @@
 
             <ul class="list-none">
                 <% for(let i = 0; i<dueToday.length; i++){%>
-                <li class="Todo-item">
+                <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
                         <div class="flex items-center gap-2">
                             <input type="checkbox" <%= dueToday[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= dueToday[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
@@ -80,7 +80,7 @@
             
             <ul class="list-none">
                 <% for(let i = 0; i<dueLater.length; i++){%>
-                <li class="Todo-item">
+                <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
                         <div class="flex items-center gap-2">
                             <input type="checkbox" <%= dueLater[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= dueLater[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
@@ -109,7 +109,7 @@
             
             <ul class="list-none">
                 <% for(let i = 0; i<allTodos.length; i++){%>
-                <li class="Todo-item">
+                <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
                         <div class="flex items-center gap-2">
                             <input type="checkbox" <%= allTodos[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= allTodos[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
