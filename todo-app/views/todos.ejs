@@ -25,7 +25,7 @@
                 <li class="Todo-item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
                         <div class="flex items-center gap-2">
-                            <input type="checkbox" <%= overdue[i].completed ? "checked" : "" %> onclick= "updatedTodoFalse(<%= overdue[i].id %>) || updatedTodoTrue(<%= overdue[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
+                            <input type="checkbox" <%= overdue[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= overdue[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
                                 name="" id="todo-over-<%= overdue[i].id %>" />
                             <label for="todo-over-<%= overdue[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= overdue[i].title %></label>
                         </div>
@@ -54,7 +54,7 @@
                 <li class="Todo-item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
                         <div class="flex items-center gap-2">
-                            <input type="checkbox" <%= dueToday[i].completed ? "checked" : "" %> onclick= "updatedTodoFalse(<%= dueToday[i].id %>) || updatedTodoTrue(<%= dueToday[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
+                            <input type="checkbox" <%= dueToday[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= dueToday[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
                                 name="" id="todo-today-<%= dueToday[i].id %>" />
                             <label for="todo-today-<%= dueToday[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= dueToday[i].title %></label>
                         </div>
@@ -83,7 +83,7 @@
                 <li class="Todo-item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
                         <div class="flex items-center gap-2">
-                            <input type="checkbox" <%= dueLater[i].completed ? "checked" : "" %> onclick= "updatedTodoFalse(<%= dueLater[i].id %>) || updatedTodoTrue(<%= dueLater[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
+                            <input type="checkbox" <%= dueLater[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= dueLater[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
                                 name="" id="todo-later-<%= dueLater[i].id %>" />
                             <label for="todo-later-<%= dueLater[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= dueLater[i].title %></label>
                         </div>
@@ -112,7 +112,7 @@
                 <li class="Todo-item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
                         <div class="flex items-center gap-2">
-                            <input type="checkbox" <%= allTodos[i].completed ? "checked" : "" %> onclick= "updatedTodoFalse(<%= allTodos[i].id %>) || updatedTodoTrue(<%= allTodos[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
+                            <input type="checkbox" <%= allTodos[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= allTodos[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
                                 name="" id="todo-<%= allTodos[i].id %>" />
                             <label for="todo-<%= allTodos[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= allTodos[i].title %></label>
                         </div>

@@ -13,25 +13,25 @@ app.use(csrf({ cookie: true }));
 app.set("view engine", "ejs");
 
 app.get("/", async function (request, response) {
-  const allTodos = await Todo.getTodos();
   const overdue = await Todo.overDue();
   const dueToday = await Todo.dueToday();
   const dueLater = await Todo.dueLater();
+  const allTodos = await Todo.getTodos();
 
   if (request.accepts("html")) {
     response.render("index", {
-      allTodos,
       overdue,
       dueToday,
       dueLater,
+      allTodos,
       csrfToken: request.csrfToken(),
     });
   } else {
     response.json({
-      allTodos,
       overdue,
       dueToday,
       dueLater,
+      allTodos,
     });
   }
 });
@@ -72,14 +72,11 @@ app.post("/todos", async function (request, response) {
 app.put("/todos/:id", async function (request, response) {
   try {
     const todo = await Todo.findByPk(request.params.id);
-    const { completed } = request.body;
-    await todo.setCompletionStatus(completed);
-    response.json({ completed: true });
+    const updateTodo = await todo.setCompletionStatus();
+    return response.json(updateTodo);
   } catch (error) {
     console.error(error);
-    response.json({
-      error,
-    });
+    return response.json(error);
   }
 });
 

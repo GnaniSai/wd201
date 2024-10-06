@@ -10,38 +10,20 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content")
-        function updatedTodoTrue(id){
-            fetch(`/todos/${id}`,{
-                method: "put",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify({
-                    "_csrf":token,
-                    completed: true,
-                })
+        function updateTodo(id) {
+        fetch(`/todos/${id}`, {
+            method: "put",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+            _csrf: token,
+            }),
+        })
+            .then((res) => {
+            if (res.ok) {
+                window.location.reload();
+            }
             })
-            .then((res)=>{
-                if(res.ok){
-                    window.location.reload();
-                }
-            })
-            .catch((err)=>console.error(err))
-        }
-
-        function updatedTodoFalse(id){
-            fetch(`/todos/${id}`,{
-                method: "put",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify({
-                    "_csrf":token,
-                    completed: false,
-                })
-            })
-            .then((res)=>{
-                if(res.ok){
-                    window.location.reload();
-                }
-            })
-            .catch((err)=>console.error(err))
+            .catch((err) => console.error(err));
         }
 
         function deleteTodo(id){
