@@ -1,3 +1,4 @@
+<table>
 <form action="/todos" method="post">
     <input type="hidden" name="_csrf" value="<%= csrfToken%>">
     <!-- For Todo Entries -->
@@ -5,8 +6,7 @@
         <input type="text" class="border-2 border-gray-500 p-1 pl-2 rounded-lg" name="title" id="todo-title" placeholder="What's next"
             required />
         <input type="date" class="border-2 border-gray-500 p-1 rounded-lg" name="dueDate" id="todo-date" required />
-        <button value="submit" class="text-white text-l bg-green-500 py-1 px-2 rounded-lg">
-            Submit
+        <button class="text-white text-l bg-green-500 py-1 px-2 rounded-lg">submit
         </button>
     </div>
     <!-- List Todos -->
@@ -102,7 +102,7 @@
          <div class="relative border-2 border-black rounded-lg w-80 h-80 overflow-y-auto hide-scrollbar">
             <div class="sticky top-0 w-full flex bg-white gap-2 justify-center items-center mb-2 p-1">
                 <h5 class="font-bold">Completed Items</h5>
-                <span id="count-due-later"
+                <span id="count-completed-items"
                     class="bg-gray-500 text-white text-sm font-bold px-2 py-0 text-center rounded-full">
                     <%= allTodos.length %>
                 </span>
@@ -129,3 +129,4 @@
         </div>
     </div>
 </form>
+</table>
