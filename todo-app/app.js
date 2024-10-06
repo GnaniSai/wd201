@@ -14,24 +14,24 @@ app.set("view engine", "ejs");
 
 app.get("/", async function (request, response) {
   const allTodos = await Todo.getTodos();
-  const overDueList = await Todo.overDue();
-  const dueTodayList = await Todo.dueToday();
-  const dueLaterList = await Todo.dueLater();
+  const overdue = await Todo.overDue();
+  const dueToday = await Todo.dueToday();
+  const dueLater = await Todo.dueLater();
 
   if (request.accepts("html")) {
     response.render("index", {
       allTodos,
-      overDueList,
-      dueTodayList,
-      dueLaterList,
+      overdue,
+      dueToday,
+      dueLater,
       csrfToken: request.csrfToken(),
     });
   } else {
     response.json({
       allTodos,
-      overDueList,
-      dueTodayList,
-      dueLaterList,
+      overdue,
+      dueToday,
+      dueLater,
     });
   }
 });
