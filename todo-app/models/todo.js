@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     static async overDue() {
       return this.findAll({
         where: {
-          completed: false,
           dueDate: {
             [Op.lt]: new Date().toISOString().slice(0, 10),
           },
@@ -34,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     static async dueToday() {
       return this.findAll({
         where: {
-          completed: false,
           dueDate: {
             [Op.eq]: new Date().toISOString().slice(0, 10),
           },
@@ -45,7 +43,6 @@ module.exports = (sequelize, DataTypes) => {
     static async dueLater() {
       return this.findAll({
         where: {
-          completed: false,
           dueDate: {
             [Op.gt]: new Date().toISOString().slice(0, 10),
           },
