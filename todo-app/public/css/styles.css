@@ -1,10 +1,7 @@
-.Todo-item:hover .trash-icon{
+.Todo-item:hover .trash-icon {
   display: block;
 }
 
 .hide-scrollbar {
-  scrollbar-width: none; 
+  scrollbar-width: none;
 }
-
-
-
