@@ -1,5 +1,5 @@
 "use strict";
-const { Model, Op } = require("sequelize");
+const { Model, Op, where } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
     /**
@@ -11,14 +11,19 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
     static getTodos() {
-      return this.findAll();
-    }
-    static addTodo({ title, dueDate }) {
-      return this.create({ title: title, dueDate: dueDate, completed: false });
-    }
-    static overDue() {
       return this.findAll({
         where: {
+          completed: true,
+        },
+      });
+    }
+    static async addTodo({ title, dueDate }) {
+      return this.create({ title: title, dueDate: dueDate, completed: false });
+    }
+    static async overDue() {
+      return this.findAll({
+        where: {
+          completed: false,
           dueDate: {
             [Op.lt]: new Date().toISOString().slice(0, 10),
           },
@@ -26,9 +31,10 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
-    static dueToday() {
+    static async dueToday() {
       return this.findAll({
         where: {
+          completed: false,
           dueDate: {
             [Op.eq]: new Date().toISOString().slice(0, 10),
           },
@@ -36,9 +42,10 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
-    static dueLater() {
+    static async dueLater() {
       return this.findAll({
         where: {
+          completed: false,
           dueDate: {
             [Op.gt]: new Date().toISOString().slice(0, 10),
           },
@@ -46,8 +53,16 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
-    markAsCompleted() {
-      return this.update({ completed: true });
+    static async remove(id) {
+      return this.destroy({
+        where: {
+          id,
+        },
+      });
+    }
+
+    setCompletionStatus(value) {
+      return this.update({ completed: value });
     }
   }
   Todo.init(
