@@ -1,3 +1,7 @@
+.Todo-Item:hover .trash-icon{
+  display: block;
+}
+
 .hide-scrollbar {
   scrollbar-width: none;
 }
