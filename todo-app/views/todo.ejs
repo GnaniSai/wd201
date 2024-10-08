@@ -27,11 +27,11 @@
                 <% for(let i = 0; i<overdue.length; i++){%>
                 <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
-                        <div class="flex items-center gap-2">
+                        <!-- <div class="flex items-center gap-2"> -->
                             <input type="checkbox" <%= overdue[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= overdue[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
                                 name="" id="todo-over-<%= overdue[i].id %>" />
                             <label for="todo-over-<%= overdue[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= overdue[i].title %></label>
-                        </div>
+                        <!-- </div> -->
                         <a href="#" onclick= "deleteTodo(<%= overdue[i].id %>)"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
                                 viewBox="0 -960 960 960" width="24px" fill="black">
                                 <path
@@ -56,11 +56,11 @@
                 <% for(let i = 0; i<dueToday.length; i++){%>
                 <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
-                        <div class="flex items-center gap-2">
+                        <!-- <div class="flex items-center gap-2"> -->
                             <input type="checkbox" <%= dueToday[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= dueToday[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
                                 name="" id="todo-today-<%= dueToday[i].id %>" />
                             <label for="todo-today-<%= dueToday[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= dueToday[i].title %></label>
-                        </div>
+                        <!-- </div> -->
                         <a href="#" onclick= "deleteTodo(<%= dueToday[i].id %>)"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
                                 viewBox="0 -960 960 960" width="24px" fill="black">
                                 <path
@@ -85,11 +85,11 @@
                 <% for(let i = 0; i<dueLater.length; i++){%>
                 <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
-                        <div class="flex items-center gap-2">
+                        <!-- <div class="flex items-center gap-2"> -->
                             <input type="checkbox" <%= dueLater[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= dueLater[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
                                 name="" id="todo-later-<%= dueLater[i].id %>" />
                             <label for="todo-later-<%= dueLater[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= dueLater[i].title %></label>
-                        </div>
+                        <!-- </div> -->
                         <a href="#" onclick= "deleteTodo(<%= dueLater[i].id %>)"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
                                 viewBox="0 -960 960 960" width="24px" fill="black">
                                 <path
@@ -114,11 +114,11 @@
                 <% for(let i = 0; i<completedItems.length; i++){%>
                 <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
-                        <div class="flex items-center gap-2">
+                        <!-- <div class="flex items-center gap-2"> -->
                             <input type="checkbox" <%= completedItems[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= completedItems[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
                                 name="" id="todo-<%= completedItems[i].id %>" />
                             <label for="todo-<%= completedItems[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= completedItems[i].title %></label>
-                        </div>
+                        <!-- </div> -->
                         <a href="#" onclick= "deleteTodo(<%= completedItems[i].id %>)"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
                                 viewBox="0 -960 960 960" width="24px" fill="black">
                                 <path
