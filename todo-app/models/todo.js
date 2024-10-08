@@ -8,52 +8,69 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
-    }
-    static getTodos() {
-      return this.findAll({
-        where: {
-          completed: true,
-        },
+      Todo.belongsTo(models.User, {
+        foreignKey: "userId",
       });
     }
-    static async addTodo({ title, dueDate }) {
-      return this.create({ title: title, dueDate: dueDate, completed: false });
+
+    static async addTodo({ title, dueDate, userId }) {
+      return this.create({
+        title: title,
+        dueDate: dueDate,
+        completed: false,
+        userId,
+      });
     }
-    static async overDue() {
+    static async overDue(userId) {
       return this.findAll({
         where: {
           dueDate: {
             [Op.lt]: new Date().toISOString().slice(0, 10),
           },
+          userId,
+          completed: false,
         },
       });
     }
 
-    static async dueToday() {
+    static async dueToday(userId) {
       return this.findAll({
         where: {
           dueDate: {
             [Op.eq]: new Date().toISOString().slice(0, 10),
           },
+          userId,
+          completed: false,
         },
       });
     }
 
-    static async dueLater() {
+    static async dueLater(userId) {
       return this.findAll({
         where: {
           dueDate: {
             [Op.gt]: new Date().toISOString().slice(0, 10),
           },
+          userId,
+          completed: false,
         },
       });
     }
 
-    static async remove(id) {
+    static completed(userId) {
+      return this.findAll({
+        where: {
+          completed: true,
+          userId,
+        },
+      });
+    }
+
+    static async remove(id, userId) {
       return this.destroy({
         where: {
           id,
+          userId,
         },
       });
     }
@@ -64,9 +81,19 @@ module.exports = (sequelize, DataTypes) => {
   }
   Todo.init(
     {
-      title: DataTypes.STRING,
-      dueDate: DataTypes.DATEONLY,
-      completed: DataTypes.BOOLEAN,
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: { notNull: true, len: 5 },
+      },
+      dueDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
+      completed: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
     {
       sequelize,

@@ -8,46 +8,13 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content")
-        function updateTodo(id) {
-        fetch(`/todos/${id}`, {
-            method: "put",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-            _csrf: token,
-            }),
-        })
-            .then((res) => {
-            if (res.ok) {
-                window.location.reload();
-            }
-            })
-            .catch((err) => console.error(err));
-        }
-
-        function deleteTodo(id){
-            fetch(`/todos/${id}`,{
-                method: "delete",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify({
-                    "_csrf":token
-                })
-            })
-            .then((res)=>{
-                if(res.ok){
-                    window.location.reload();
-                }
-            })
-            .catch((err)=>console.error(err))
-        }
-    </script>
 </head>
 <body>
     <header><%-include('header.ejs') %></header>
-    <%-include('todos.ejs') %>
-    <footer>
-       <%-include('footer.ejs') %>
-    </footer>
+    <div class="flex flex-col items-center m-5 gap-3">
+    <p>Welcome to the To-Do Manager</p>
+    <p>New here? <a href="/signup" class="text-green-500">Sign-up now</a></p>
+    <p>Already have an account? <a href="/login" class="text-green-500">Sign-in</a></p>
+</div>
 </body>
 </html>

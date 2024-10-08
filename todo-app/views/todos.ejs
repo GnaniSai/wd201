@@ -1,3 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<%= csrfToken%>">
+    <title>Todoz</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        var token = document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+        function updateTodo(id) {
+        fetch(`/todos/${id}`, {
+            method: "put",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+            _csrf: token,
+            }),
+        })
+            .then((res) => {
+            if (res.ok) {
+                window.location.reload();
+            }
+            })
+            .catch((err) => console.error(err));
+        }
+
+        function deleteTodo(id){
+            fetch(`/todos/${id}`,{
+                method: "delete",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({
+                    "_csrf":token
+                })
+            })
+            .then((res)=>{
+                if(res.ok){
+                    window.location.reload();
+                }
+            })
+            .catch((err)=>console.error(err))
+        }
+    </script>
+</head>
+<body>
+    <header><%-include('header.ejs') %></header>
+    <div class="text-center text-red-500 m-3"><a href="/signout">Signout</a></div>
 <form action="/todos" method="post">
     <input type="hidden" name="_csrf" value="<%= csrfToken%>">
     <!-- For Todo Entries -->
@@ -8,6 +56,7 @@
         <button type="submit" class="text-white text-l bg-green-500 py-1 px-2 rounded-lg">submit
         </button>
     </div>
+    <div class="text-center list-none text-red-600"><%-include('notifications.ejs') %></div>
     <!-- List Todos -->
     <div class="flex gap-3 justify-center m-10">
         <!-- Overdue Todos -->
@@ -24,11 +73,11 @@
                 <% for(let i = 0; i<overdue.length; i++){%>
                 <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
-                        <!-- <div class="flex items-center gap-2"> -->
+                        <div class="flex items-center gap-2">
                             <input type="checkbox" <%= overdue[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= overdue[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
                                 name="" id="todo-over-<%= overdue[i].id %>" />
                             <label for="todo-over-<%= overdue[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= overdue[i].title %></label>
-                        <!-- </div> -->
+                        </div>
                         <a href="#" onclick= "deleteTodo(<%= overdue[i].id %>)"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
                                 viewBox="0 -960 960 960" width="24px" fill="black">
                                 <path
@@ -53,11 +102,11 @@
                 <% for(let i = 0; i<dueToday.length; i++){%>
                 <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
-                        <!-- <div class="flex items-center gap-2"> -->
+                        <div class="flex items-center gap-2">
                             <input type="checkbox" <%= dueToday[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= dueToday[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
                                 name="" id="todo-today-<%= dueToday[i].id %>" />
                             <label for="todo-today-<%= dueToday[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= dueToday[i].title %></label>
-                        <!-- </div> -->
+                        </div>
                         <a href="#" onclick= "deleteTodo(<%= dueToday[i].id %>)"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
                                 viewBox="0 -960 960 960" width="24px" fill="black">
                                 <path
@@ -82,11 +131,11 @@
                 <% for(let i = 0; i<dueLater.length; i++){%>
                 <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
-                        <!-- <div class="flex items-center gap-2"> -->
+                        <div class="flex items-center gap-2">
                             <input type="checkbox" <%= dueLater[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= dueLater[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
                                 name="" id="todo-later-<%= dueLater[i].id %>" />
                             <label for="todo-later-<%= dueLater[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= dueLater[i].title %></label>
-                        <!-- </div> -->
+                        </div>
                         <a href="#" onclick= "deleteTodo(<%= dueLater[i].id %>)"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
                                 viewBox="0 -960 960 960" width="24px" fill="black">
                                 <path
@@ -103,20 +152,20 @@
                 <h5 class="font-bold">Completed Items</h5>
                 <span id="count-completed"
                     class="bg-gray-500 text-white text-sm font-bold px-2 py-0 text-center rounded-full">
-                    <%= allTodos.length %>
+                    <%= completedItems.length %>
                 </span>
             </div>
             
             <ul class="list-none">
-                <% for(let i = 0; i<allTodos.length; i++){%>
+                <% for(let i = 0; i<completedItems.length; i++){%>
                 <li class="Todo-Item">
                     <div class="flex items-center justify-between gap-2 m-2 px-2 py-1 rounded hover:bg-purple-100">
-                        <!-- <div class="flex items-center gap-2"> -->
-                            <input type="checkbox" <%= allTodos[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= allTodos[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
-                                name="" id="todo-<%= allTodos[i].id %>" />
-                            <label for="todo-<%= allTodos[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= allTodos[i].title %></label>
-                        <!-- </div> -->
-                        <a href="#" onclick= "deleteTodo(<%= allTodos[i].id %>)"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" <%= completedItems[i].completed ? "checked" : "" %> onclick= "updateTodo(<%= completedItems[i].id %>)" class="w-4 h-4 text-blue-600 bg-gray-100 rounded cursor-pointer"
+                                name="" id="todo-<%= completedItems[i].id %>" />
+                            <label for="todo-<%= completedItems[i].id %>" class="text-gray-600 font-bold cursor-pointer"><%= completedItems[i].title %></label>
+                        </div>
+                        <a href="#" onclick= "deleteTodo(<%= completedItems[i].id %>)"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
                                 viewBox="0 -960 960 960" width="24px" fill="black">
                                 <path
                                     d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
@@ -127,4 +176,10 @@
             </ul>
         </div>
     </div>
+
+    <footer>
+        <%-include('footer.ejs') %>
+     </footer>
 </form>
+</body>
+</html>
