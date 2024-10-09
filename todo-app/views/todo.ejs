@@ -3,11 +3,17 @@
 <form action="/todos" method="post">
     <input type="hidden" name="_csrf" value="<%= csrfToken%>">
     <!-- For Todo Entries -->
-    <div class="flex gap-2 justify-center max-md:flex max-sm:flex-col max-sm:items-center">
-        <input type="text" class="border-2 border-gray-500 p-1 pl-2 rounded-lg max-sm:w-44" name="title" id="todo-title" placeholder="What's next"
+    <div class="flex flex-col gap-2 items-center max-md:flex max-sm:flex-col max-sm:items-center">
+        <div>
+        <label for="todo-title" class="text-l font-bold">Todo:</label>
+        <input type="text" class="border-2 border-gray-500 w-48 p-1 pl-2 rounded-lg max-sm:w-44" name="title" id="todo-title" placeholder="What's next"
             required />
-        <input type="date" placeholder="dd-mm-yyyy" onblur="(this.type='date')" class="border-2 border-gray-500 p-1 rounded-lg max-sm:w-44" name="dueDate" id="todo-date" required />
-        <button type="submit" class="text-white text-l bg-green-500 py-1 px-2 rounded-lg max-sm:w-24">submit
+        </div>
+        <div>
+        <label for="todo-date" class="text-l font-bold">Date:</label>
+        <input type="date" class="border-2 border-gray-500 p-1 w-48 rounded-lg max-sm:w-44" name="dueDate" id="todo-date" required />
+    </div>
+        <button type="submit" class="text-white text-l bg-green-500 py-2 px-3 rounded-lg max-sm:w-24">Submit
         </button>
     </div>
     <div class="text-center list-none text-red-600"><%-include('notifications.ejs') %></div>
