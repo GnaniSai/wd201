@@ -6,7 +6,7 @@
     <div class="flex gap-2 justify-center max-md:flex max-sm:flex-col max-sm:items-center">
         <input type="text" class="border-2 border-gray-500 p-1 pl-2 rounded-lg max-sm:w-44" name="title" id="todo-title" placeholder="What's next"
             required />
-        <input type="date" class="border-2 border-gray-500 p-1 rounded-lg max-sm:w-44" name="dueDate" id="todo-date" required />
+        <input type="date" placeholder="dd-mm-yyyy" onblur="(this.type='date')" class="border-2 border-gray-500 p-1 rounded-lg max-sm:w-44" name="dueDate" id="todo-date" required />
         <button type="submit" class="text-white text-l bg-green-500 py-1 px-2 rounded-lg max-sm:w-24">submit
         </button>
     </div>
