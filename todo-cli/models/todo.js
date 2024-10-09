@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       console.log("My Todo list \n");
 
       console.log("Overdue");
-      const overDueList = await Todo.overdue();
+      const overDueList = await this.overdue();
       const result1 = overDueList
         .map((value) => value.displayableString())
         .join("\n")
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       console.log("\n");
 
       console.log("Due Today");
-      const dueTodayList = await Todo.dueToday();
+      const dueTodayList = await this.dueToday();
       const result2 = dueTodayList
         .map((value) => value.displayableString())
         .join("\n")
@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
       console.log("\n");
 
       console.log("Due Later");
-      const dueLaterList = await Todo.dueLater();
+      const dueLaterList = await this.dueLater();
       const result3 = dueLaterList
         .map((value) => value.displayableString())
         .join("\n")
@@ -53,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
       const tasks = await Todo.findAll({
         where: {
           dueDate: {
-            [Op.lt]: getJSDate(0),
+            [Op.lt]: new Date().toISOString().slice(0,10),
           },
         },
       });
@@ -64,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
       const tasks = await Todo.findAll({
         where: {
           dueDate: {
-            [Op.eq]: getJSDate(0),
+            [Op.eq]: new Date().toISOString().slice(0,10),
           },
         },
       });
@@ -75,7 +75,7 @@ module.exports = (sequelize, DataTypes) => {
       const tasks = await Todo.findAll({
         where: {
           dueDate: {
-            [Op.gt]: getJSDate(0),
+            [Op.gt]: new Date().toISOString().slice(0,10),
           },
         },
       });
@@ -91,6 +91,14 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       );
+    }
+
+    static async remove(id){
+      await Todo.destroy({
+        where:{
+          id: id
+        }
+      })
     }
 
     displayableString() {
